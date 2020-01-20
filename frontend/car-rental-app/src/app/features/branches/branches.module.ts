@@ -9,6 +9,7 @@ import { BranchesComponent } from './branches.component';
 import { BranchNewComponent } from './branch-new/branch-new.component';
 import { BranchOverviewComponent } from './branch-overview/branch-overview.component';
 import { BranchUpdateComponent } from './branch-update/branch-update.component';
+import { BranchDetailsComponent } from './branch-details/branch-details.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BranchUpdateComponent } from './branch-update/branch-update.component';
     BranchNewComponent,
     BranchOverviewComponent,
     BranchUpdateComponent,
+    BranchDetailsComponent,
   ],
   imports: [
     CommonModule,

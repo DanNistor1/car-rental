@@ -305,34 +305,6 @@ public class BookingControllerRestIntegrationTest extends RestIntegrationTest {
         return car;
     }
 
-/* // Alex
-    private Car getUpdatedCar() {
-        Car updatedCar = new Car();
-        updatedCar.setMake("Aa");
-        updatedCar.setModel("Bb");
-        updatedCar.setBodyType("Cc");
-        updatedCar.setYearOfProduction(1988);
-        updatedCar.setColor("Dd");
-        updatedCar.setMileage(2019L);
-        updatedCar.setStatus(Status.UNAVAILABLE);
-        updatedCar.setAmount("Ee");
-
-        updatedCar = carRepository.saveAndFlush(updatedCar);
-        return updatedCar;
-    }
-
-    private Customer getUpdatedCustomer() {
-        Customer customer = new Customer();
-        customer.setFirstName("Aa");
-        customer.setLastName("Bb");
-        customer.setEmail("Cc");
-        customer.setAddress("Dd");
-
-        customer = customerRepository.saveAndFlush(customer);
-        return customer;
-    }
-*/
-
     private CarReturn buildLightCarReturn() {
         CarReturn carReturn = new CarReturn();
         carReturn.setDateOfReturn(LocalDate.of(2019, 8, 30));

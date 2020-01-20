@@ -21,9 +21,7 @@ import { BranchesModule } from './features/branches/branches.module';
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    SuccessSnackComponent,
-
-
+    SuccessSnackComponent
   ],
   imports: [
     BrowserModule,
