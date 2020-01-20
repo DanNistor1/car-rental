@@ -1,0 +1,74 @@
+<div class="rental-offices-details">
+  <button (click)="goBack()" mat-raised-button>Close</button>
+  <h3>RENTAL OFFICE DETAILS</h3>
+  <table [dataSource]='rentalOffices | async' class="mat-elevation-z8" mat-table>
+
+    <ng-container matColumnDef="id">
+      <th *matHeaderCellDef mat-header-cell>Id</th>
+      <td *matCellDef="let element" mat-cell>{{element.id}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>Name</th>
+      <td *matCellDef="let element" mat-cell>{{element.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="internetDomain">
+      <th *matHeaderCellDef mat-header-cell>Internet Domain</th>
+      <td *matCellDef="let element" mat-cell>{{element.internetDomain}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="contactAddress">
+      <th *matHeaderCellDef mat-header-cell>Contact Address</th>
+      <td *matCellDef="let element" mat-cell>{{element.contactAddress}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="owner">
+      <th *matHeaderCellDef mat-header-cell>Owner</th>
+      <td *matCellDef="let element" mat-cell>{{element.owner}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="logoType">
+      <th *matHeaderCellDef mat-header-cell>Logo Type</th>
+      <td *matCellDef="let element" mat-cell>{{element.logoType}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="branches">
+      <th *matHeaderCellDef mat-header-cell>Number of branches</th>
+      <td *matCellDef="let element" mat-cell>{{element.branches.length}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th *matHeaderCellDef mat-header-cell>Actions</th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="view=true" mat-raised-button>Branches list</button>
+        <button [routerLink]="['/rental-offices', element.id, 'branches-list']" mat-raised-button>
+          Add new branch
+        </button>
+        <button mat-raised-button routerLink="/rental-offices/{{element.id}}/update">
+          Update rental office
+        </button>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+
+  </table>
+
+</div>
+
+<div class="blank_row"></div>
+<div [hidden]="!view">
+  <button (click)="view=false" mat-raised-button>Close list</button>
+  <h3>Rental office branches list:</h3>
+  <div class="list">
+    <ul class="branches">
+      <li *ngFor="let branch of branches">
+        <span class="badge">{{branch.id}}</span>{{branch.address}}
+        <button mat-raised-button style="position: absolute; right: 0;" (click)=deleteBranch(branch)>Delete</button>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="blank_row"></div>
