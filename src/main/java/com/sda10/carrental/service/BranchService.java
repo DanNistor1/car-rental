@@ -72,6 +72,7 @@ public class BranchService {
         if (branchToUpdate.isPresent()) {
             Branch branch = branchToUpdate.get();
             branch.addEmployee(employee);
+            employeeRepository.save(employee);
             return branchRepository.save(branch);
         } else {
             throw new RuntimeException("Branch could not be updated");
@@ -84,6 +85,7 @@ public class BranchService {
         if (branchToUpdate.isPresent()) {
             Branch branch = branchToUpdate.get();
             branch.removeEmployee(employee);
+            employeeRepository.save(employee);
             return branchRepository.save(branch);
         } else {
             throw new RuntimeException("Branch could not be removed");

@@ -1,3 +1,5 @@
+import { CarsListModule } from './../cars/cars-list/cars-list.module';
+import { EmployeesListModule } from './../employees/employees-list/employees-list.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +26,8 @@ import { BranchDetailsComponent } from './branch-details/branch-details.componen
     FormsModule,
     MaterialModule,
     FontAwesomeModule,
+    EmployeesListModule,
+    CarsListModule,
     BranchesRoutingModule
   ],
 })
