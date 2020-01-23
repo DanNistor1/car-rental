@@ -20,5 +20,5 @@ export class CarsService {
   getAllCars(): Observable<Car[]> {
     return this.httpClient.get<Car[]>(this.CAR_API);
   }
-  
+
 }
