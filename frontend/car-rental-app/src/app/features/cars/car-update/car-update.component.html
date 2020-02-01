@@ -1,0 +1,44 @@
+<form class="car-form">
+
+  <mat-form-field class="car-full-width">
+    <input [(ngModel)]="carToUpdate.model" matInput name="model" placeholder="Model">
+  </mat-form-field>
+
+  <mat-form-field class="car-full-width">
+    <input [(ngModel)]="carToUpdate.amount" matInput name="amount" placeholder="Amount">
+  </mat-form-field>
+
+  <mat-form-field class="car-full-width">
+    <input [(ngModel)]="carToUpdate.bodyType" matInput name="bodyType" placeholder="Body Type">
+  </mat-form-field>
+
+  <mat-form-field class="car-full-width">
+    <input [(ngModel)]="carToUpdate.make" matInput name="make" placeholder="Make">
+  </mat-form-field>
+
+  <mat-form-field class="car-full-width">
+    <input [(ngModel)]="carToUpdate.yearOfProduction" matInput name="yearOfProduction" placeholder="Year of Production">
+  </mat-form-field>
+
+  <mat-form-field class="car-full-width">
+    <input [(ngModel)]="carToUpdate.color" matInput name="color" placeholder="Color">
+  </mat-form-field>
+
+  <mat-form-field class="car-full-width">
+    <input [(ngModel)]="carToUpdate.mileage" matInput name="mileage" placeholder="Mileage">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [(ngModel)]="carToUpdate.status" matInput name="status" placeholder="Status">
+      <mat-option value="RENTED">RENTED</mat-option>
+      <mat-option value="AVAILABLE">AVAILABLE</mat-option>
+      <mat-option value="UNAVAILABLE">UNAVAILABLE</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <button (click)="changeCar()" color="primary" mat-raised-button>Change</button>
+    <button (click)="goToCarDetails()" mat-raised-button>Close</button>
+  </div>
+
+</form>

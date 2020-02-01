@@ -96,10 +96,10 @@ public class RevenueControllerRestIntegrationTest extends RestIntegrationTest {
 	}
 
 	private Car getSavedCar(String make, String model, String bodyType, int yearOfProduction, String color, Long mileage, Status status, double amount) {
-		Car car = new Car();
-		car.setMake(make);
-		car.setModel(model);
-		car.setBodyType(bodyType);
+        Car car = new Car();
+        car.setMake(make);
+        car.setModel(model);
+        car.setBodyType(bodyType);
         car.setYearOfProduction(yearOfProduction);
         car.setColor(color);
         car.setMileage(mileage);
@@ -134,16 +134,16 @@ public class RevenueControllerRestIntegrationTest extends RestIntegrationTest {
         return branch;
     }
 
-	private CarRentalOffice buildCarRentalOffice(String address, String internetDomain, String name, String owner, String logo, List<Branch> list) {
-		CarRentalOffice carRentalOffice = new CarRentalOffice();
-		carRentalOffice.setContactAddress(address);
-		carRentalOffice.setInternetDomain(internetDomain);
-		carRentalOffice.setName(name);
-		carRentalOffice.setOwner(owner);
-		carRentalOffice.setLogoType(logo);
-		carRentalOffice.setBranches(list);
+    private CarRentalOffice buildCarRentalOffice(String address, String internetDomain, String name, String owner, String logo, List<Branch> list) {
+        CarRentalOffice carRentalOffice = new CarRentalOffice();
+        carRentalOffice.setContactAddress(address);
+        carRentalOffice.setInternetDomain(internetDomain);
+        carRentalOffice.setName(name);
+        carRentalOffice.setOwner(owner);
+        carRentalOffice.setLogoType(logo);
+        carRentalOffice.setBranches(list);
 
-		return carRentalOffice;
-	}
+        return carRentalOffice;
+    }
 
 }

@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.Period;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
 public class BookingService {
@@ -40,6 +43,12 @@ public class BookingService {
         return bookingRepository.getOne(id);
     }
 
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll().stream()
+                .map(booking -> verifyStatus(booking))
+                .collect(Collectors.toList());
+    }
+
     public Booking updateBooking(Long id, Booking booking) {
         Optional<Booking> bookingToUpdate = bookingRepository.findById(id);
 
@@ -55,6 +64,14 @@ public class BookingService {
         Booking bookingToDelete = bookingRepository.findById(id).get();
 
         bookingRepository.delete(bookingToDelete);
+    }
+
+    private Booking verifyStatus(Booking booking) {
+        if (LocalDate.now().isAfter(booking.getDateTo()) && booking.getBookingStatus() == BookingStatus.OPEN) {
+            booking.setBookingStatus(BookingStatus.COMPLETED);
+            updateBooking(booking.getId(), booking);
+        }
+        return booking;
     }
 
     public Booking buildBooking(Customer client, Car desiredCar, LocalDate rentalDate, LocalDate returnDate, Branch rentalBranch, Branch returnBranch) {
@@ -82,7 +99,7 @@ public class BookingService {
     }
 
     private Double getCalculatedBookingAmount(Car car, LocalDate rentalDate, LocalDate returnDate) {
-        Integer rentalDays = Period.between(rentalDate, returnDate).getDays();
+        Integer rentalDays = (int) DAYS.between(rentalDate, returnDate);
         return rentalDays * car.getAmount();
     }
 
@@ -92,7 +109,7 @@ public class BookingService {
                 .orElseThrow(() -> new RuntimeException("Booking could not be canceled"));
         LocalDate cancellationDate = LocalDate.now();
 
-        Integer daysUntilPickup = Period.between(cancellationDate, bookingToUpdate.getDateFrom()).getDays();
+        Integer daysUntilPickup = (int) DAYS.between(cancellationDate, bookingToUpdate.getDateFrom());
 
         bookingToUpdate.setBookingStatus(BookingStatus.CANCELLED);
 
