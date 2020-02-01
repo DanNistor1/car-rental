@@ -11,6 +11,7 @@ import { Booking } from 'src/app/shared/model/booking';
 import { Observable } from 'rxjs';
 import { Car } from 'src/app/shared/model/car';
 import { CustomerService } from '../customer.service';
+import { Status } from 'src/app/shared/model/status';
 
 @Component({
   selector: 'app-booking-new',
@@ -35,7 +36,7 @@ export class BookingNewComponent implements OnInit {
               private carService: CarsService,
               private snackBar: MatSnackBar,
               private router: Router
-              ) { }
+            ) { }
 
   ngOnInit() {
     this.getCustomers();
@@ -64,7 +65,13 @@ export class BookingNewComponent implements OnInit {
   }
 
   getCars() {
-    this.carService.getAllCars().subscribe((cars: Car[]) => this.cars = cars);
+    this.carService.getAllCars().subscribe((cars: Car[]) => this.cars = cars.filter(car => {
+      return car.status === Status.available;
+    }));
+  }
+
+  checkCarStatus(car: Car): Car {
+    if (car.status === Status.available) { return car; }
   }
 
   goToBookings() {
