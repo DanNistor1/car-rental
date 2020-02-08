@@ -38,13 +38,17 @@ public class BookingController {
     }
 
     @GetMapping(value = "/bookings")
-    public List<BookingDto> findAllBookings() {
+    public ResponseEntity<List<BookingDto>> getBookingPage(
+            @RequestParam(defaultValue = "0") Integer pageIndex,
+            @RequestParam(defaultValue = "5") Integer pageSize) {
 
-        List<Booking> bookings = bookingService.getAllBookings();
-        return bookings
+        List<Booking> bookings = bookingService.getAllBookings(pageIndex, pageSize);
+        List<BookingDto> response = bookings
                 .stream()
                 .map(bookingMapper::toDto)
                 .collect(Collectors.toList());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PutMapping(value = "/bookings/{id}")
@@ -70,12 +74,14 @@ public class BookingController {
         }
     }
 
-    @PostMapping(value = "/bookings/{id}/cancellations")
-    private BookingDto cancelBooking(@PathVariable Long id) {
+    @GetMapping(value = "/bookings/{id}/cancellations")
+    private ResponseEntity<BookingDto> cancelBooking(@PathVariable Long id) {
 
         Booking booking = bookingService.cancelBooking(id);
 
-        return bookingMapper.toDto(booking);
+        BookingDto response = bookingMapper.toDto(booking);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
 

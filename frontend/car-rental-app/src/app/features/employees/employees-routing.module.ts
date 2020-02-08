@@ -1,11 +1,11 @@
 
-import { EmployeesComponent } from './../employees.component';
+import { EmployeesComponent } from './employees.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmployeesOverviewComponent } from '../employees-overview/employees-overview.component';
-import { EmployeesNewComponent } from '../employees-new/employees-new.component';
-import { EmployeesUpdateComponent } from '../employees-update/employees-update.component';
-import { EmployeesDetailsComponent } from '../employees-details/employees-details.component';
+import { EmployeesOverviewComponent } from './employees-overview/employees-overview.component';
+import { EmployeesNewComponent } from './employees-new/employees-new.component';
+import { EmployeesUpdateComponent } from './employees-update/employees-update.component';
+import { EmployeesDetailsComponent } from './employees-details/employees-details.component';
 
 
 const routes: Routes = [
@@ -37,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class EmployeesRoutingRoutingModule { }
+export class EmployeesRoutingModule { }

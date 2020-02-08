@@ -1,7 +1,10 @@
 <div class="booking-overview">
 
-  <button mat-raised-button routerLink="/bookings/new">New booking</button>
-  <button mat-raised-button routerLink="/revenue">Revenue</button>
+  <div class="blank_row"></div>
+  <router-outlet></router-outlet>
+  <div class="blank_row"></div>
+
+  <button class="action" mat-raised-button routerLink="/bookings/new">New booking</button>
 
   <table [dataSource]='bookings | async' class="mat-elevation-z8" mat-table>
 
@@ -43,17 +46,26 @@
     <ng-container matColumnDef="actions">
       <th *matHeaderCellDef mat-header-cell>Actions</th>
       <td *matCellDef="let element" mat-cell>
-        <button (click)="delete(element.id)" mat-raised-button>
+        <button (click)="delete(element.id)" class="danger" mat-raised-button>
           <fa-icon [icon]="trashIcon"></fa-icon>
         </button>
-        <button mat-raised-button routerLink="/bookings/{{element.id}}/details">
+        <button class="info" mat-raised-button routerLink="/bookings/{{element.id}}/details">
           <fa-icon [icon]="searchIcon"></fa-icon>
         </button>
-      </td>
+        <button class="danger" mat-raised-button routerLink="/bookings/{{element.id}}/cancellations">
+          Cancellation
+        </button>
     </ng-container>
 
-    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row style="background-color: cornflowerblue;"></tr>
     <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
 
   </table>
+
+  <br/>
+
+  <mat-paginator (page)="getBookings($event)" [length]="length" [pageSizeOptions]="pageSizeOptions"
+                 [pageSize]="pageSize">
+  </mat-paginator>
+
 </div>

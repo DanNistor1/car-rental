@@ -10,7 +10,7 @@ import { SuccessSnackComponent } from 'src/app/shared/components/success-snack/s
 import { Booking } from 'src/app/shared/model/booking';
 import { Observable } from 'rxjs';
 import { Car } from 'src/app/shared/model/car';
-import { CustomerService } from '../customer.service';
+import { CustomerService } from '../../customer/customer.service';
 import { Status } from 'src/app/shared/model/status';
 
 @Component({
@@ -36,7 +36,7 @@ export class BookingNewComponent implements OnInit {
               private carService: CarsService,
               private snackBar: MatSnackBar,
               private router: Router
-            ) { }
+              ) { }
 
   ngOnInit() {
     this.getCustomers();
@@ -68,10 +68,6 @@ export class BookingNewComponent implements OnInit {
     this.carService.getAllCars().subscribe((cars: Car[]) => this.cars = cars.filter(car => {
       return car.status === Status.available;
     }));
-  }
-
-  checkCarStatus(car: Car): Car {
-    if (car.status === Status.available) { return car; }
   }
 
   goToBookings() {

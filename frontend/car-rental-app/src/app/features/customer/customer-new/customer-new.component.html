@@ -1,0 +1,28 @@
+<form (ngSubmit)="createCustomer(customerForm.value)" [formGroup]="customerForm" class="customer-form">
+
+  <mat-form-field class="customer-full-width">
+    <input formControlName="firstNameForm" matInput placeholder="First Name" required>
+    <mat-error *ngIf="customerFirstName.invalid">{{getErrorFirstNameMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="customer-full-width">
+    <input formControlName="lastNameForm" matInput placeholder="Last Name" required>
+    <mat-error *ngIf="customerLastName.invalid">{{getErrorLastNameMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="customer-full-width">
+    <input formControlName="emailForm" matInput placeholder="Enter your email" required>
+    <mat-error *ngIf="customerEmail.invalid">{{getErrorEmailMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="customer-full-width">
+    <input formControlName="addressForm" matInput placeholder="Address" required>
+    <mat-error *ngIf="customerAdress.invalid">{{getErrorAdressMessage()}}</mat-error>
+  </mat-form-field>
+
+  <div>
+    <button [disabled]="!customerForm.valid" class="action" mat-raised-button type="submit">Create</button>
+    <button (click)="goToCustomers()" class="default" mat-raised-button>Close</button>
+  </div>
+
+</form>

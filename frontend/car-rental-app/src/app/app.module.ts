@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SuccessSnackComponent } from './shared/components/success-snack/success-snack.component';
-import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { ImpossibleSnackComponent } from './shared/components/impossible-snack/impossible-snack.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,18 +18,21 @@ import { RentalsModule } from './features/rentals/rentals.module';
 import { BookingsModule } from './features/bookings/bookings.module';
 import { EmployeeModule } from './features/employees/employee.module';
 import { ReturnsModule } from './features/returns/returns.module';
+import { RevenuesModule } from './features/revenues/revenues.module';
+import { CustomerModule } from './features/customer/customer.module';
 import { RentalOfficesModule } from './features/rental-offices/rental-offices.module';
 
 
 
 @NgModule({
   entryComponents:
-  [SuccessSnackComponent],
+    [SuccessSnackComponent, ImpossibleSnackComponent],
   declarations: [
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    SuccessSnackComponent
+    SuccessSnackComponent,
+    ImpossibleSnackComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,10 +42,12 @@ import { RentalOfficesModule } from './features/rental-offices/rental-offices.mo
     BookingsModule,
     RentalOfficesModule,
     BranchesModule,
+    CustomerModule,
     CarsModule,
     RentalsModule,
     ReturnsModule,
     EmployeeModule,
+    RevenuesModule,
     AppRoutingModule,
     MaterialModule,
     FontAwesomeModule
